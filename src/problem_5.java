@@ -4,7 +4,7 @@ import java.util.Stack;
  */
 // stack1直接入队，出队时先将stack1里的元素压入stack2，再弹出栈顶元素；
 // 之后再将stack2剩下的元素弹出并压入stack1.
-public class problem_5_realize_queue {
+public class problem_5 {
     Stack<Integer> stack1 = new Stack<Integer>();
     Stack<Integer> stack2 = new Stack<Integer>();
 

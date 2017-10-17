@@ -9,7 +9,7 @@ class TreeNode {
     TreeNode (int x) { val = x; }
 }
 
-public class problem_4_rebuild_binary_tree {
+public class problem_4 {
     public static TreeNode rebuild_binary_tree (int[] pre, int[] in) {
         if (pre.length == 0)
             return null;

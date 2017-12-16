@@ -1,39 +1,21 @@
 /**
- * Created by kangkang on 2017/11/30
- *
+ * Coded by  kangkang on 2017/12/15
+ * Description:  输入一个链表，反转链表后，输出链表的所有元素
  */
 public class problem_15 {
-    public ListNode Merge(ListNode list1,ListNode list2) {
-        ListNode L = new ListNode(0);   // 创建头结点
-        L.next = null;
-        while (list1 != null || list2 != null) {  // 循环条件：两者中有不为空时
-            if (list1 != null && list2 != null) { // 两者至少其一不为空
-                if (list1.val <= list2.val) {
-                    insert(L, list1);
-                    list1 = list1.next;
-                } else {
-                    insert(L, list2);
-                    list2 = list2.next;
-                }
-
-            } else if (list2 == null) {
-                insert(L, list1);
-                list1 = list1.next;
-            } else {
-                insert(L, list2);
-                list2 = list2.next;
-            }
+    public ListNode ReverseList(ListNode head) {
+        // 创建头结点
+        ListNode listNode = new ListNode(0);
+        // 定义指向头结点的指针p
+        ListNode p;
+        p = listNode;
+        // 遍历链表当当前指向不为空，按头插法插入到listNode中
+        while (head != null) {
+            ListNode node = new ListNode(head.val);
+            node.next = p.next;
+            p.next = node;
+            head = head.next;
         }
-        return L.next;
-    }
-
-    private void insert(ListNode L, ListNode list) { // 将list指向节点插入L尾部
-        ListNode p = L;
-        while (p.next != null) {
-            p = p.next;
-        }
-        ListNode elem = new ListNode(list.val);
-        p.next = elem;
-        elem.next = null;
+        return listNode.next;
     }
 }

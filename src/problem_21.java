@@ -1,37 +1,29 @@
 import java.util.Stack;
+
 /**
- * Created by kangkang on 2017/10/17
+ * Coded by  kangkang on 2017/12/19
+ * Description:  输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。
+ * 假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4，5,3,2,1是该压栈序列对应的
+ * 一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）
  */
-// 包含min函数的栈，
-// 一个存储数据stack_data，一个保存当前栈中的最小值，但是如果只用一个整型变量min保存，当该最小值弹出后，min中应该
-// 存储次小值，但是无法实现，所以需要每次存入数据后stack_data栈当前的最小值对应存入stack_min中。
-
 public class problem_21 {
-    public static Stack<Integer> stack_data = new Stack<>();
-    public static Stack<Integer> stack_min = new Stack<>();
-    public void push(int node) {
-        stack_data.push(node);
-        if (!stack_min.isEmpty()) {
-            int top = stack_min.peek();
-            if (top > node)
-                stack_min.push(node);
-            else
-                stack_min.push(top);
+    public boolean IsPopOrder(int [] pushA,int [] popA) {
+        int i = 0, j = 0, len = pushA.length;
+        Stack<Integer> s1 = new Stack();
+        while (i <= len) {
+            if (s1.empty() || s1.peek() != popA[j]) {
+                if (i == len)       //  如果相等, 还进入此分支, 说明pushA已循环完, 可结束循环
+                    break;
+                s1.push(pushA[i]);
+                i++;               // pushA最后一个元素入栈后,此时i与len相等, 所以while判断条件要加上=
+            }
+            else {
+                s1.pop();
+                j++;
+            }
         }
-        else
-            stack_min.push(node);
-    }
-
-    public int pop() {
-        stack_min.pop();
-        return stack_data.pop();
-    }
-
-    public int top() {
-        return stack_data.peek();
-    }
-
-    public int min() {
-        return stack_min.peek();
+        if (s1.empty())
+            return true;
+        return false;
     }
 }
